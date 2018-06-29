@@ -12,6 +12,7 @@
 		0AE16DC920DC7E810003C9FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AE16DC720DC7E810003C9FE /* Main.storyboard */; };
 		0AE16DCB20DC7E860003C9FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AE16DCA20DC7E860003C9FE /* Assets.xcassets */; };
 		0AE16DCE20DC7E860003C9FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AE16DCC20DC7E860003C9FE /* LaunchScreen.storyboard */; };
+		0AE16DD620DC8DE40003C9FE /* MusicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE16DD520DC8DE40003C9FE /* MusicTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		0AE16DCA20DC7E860003C9FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AE16DCD20DC7E860003C9FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AE16DCF20DC7E860003C9FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0AE16DD520DC8DE40003C9FE /* MusicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				0AE16DC320DC7E810003C9FE /* AppDelegate.swift */,
 				0AE16DC520DC7E810003C9FE /* ViewController.swift */,
+				0AE16DD520DC8DE40003C9FE /* MusicTableViewController.swift */,
 				0AE16DC720DC7E810003C9FE /* Main.storyboard */,
 				0AE16DCA20DC7E860003C9FE /* Assets.xcassets */,
 				0AE16DCC20DC7E860003C9FE /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			files = (
 				0AE16DC620DC7E810003C9FE /* ViewController.swift in Sources */,
 				0AE16DC420DC7E810003C9FE /* AppDelegate.swift in Sources */,
+				0AE16DD620DC8DE40003C9FE /* MusicTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
