@@ -25,13 +25,37 @@ class MusicTableViewController: UITableViewController {
 //            print(songItem.title)
 //            break
 //        }
-        // item - points to the songs?
-        // collection - points to the albums names?
+        // items - points to the songs [MPMediaItem]
+        // collections - points to the albums names?
         // itemSection - points to the sections for each song?
         // collectionSection - points to the sections for the albums?
         // itemSection vs collectionSection not too sure? they only differ in the ranges
+        // (i think) itemSection lists all songs ordered by artist and collectionSection lists all songs ordered by albums
         qryAlbums = MPMediaQuery.albums()
-        qryAlbums.groupingType = MPMediaGrouping.album
+//        qryAlbums.groupingType = MPMediaGrouping.album
+//        for item: MPMediaItem in qryAlbums.items! {
+//            print("\(item.albumTitle!) : \(item.title!)")
+//        }
+        for item: MPMediaQuerySection in qryAlbums.collectionSections!{
+            //print("\(item.title)")
+            print(item)
+        }
+        
+        for item: MPMediaItemCollection in qryAlbums.collections! {
+            let album: [MPMediaItem] = item.items
+            for song: MPMediaItem in album{
+                print("\(song.albumTitle!) : \(song.title!)")
+            }
+        }
+        
+        for item: MPMediaQuerySection in qryAlbums.itemSections! {
+            //print("\(item.title)")
+            print(item)
+        }
+        
+        for song: MPMediaItem in qryAlbums.items!{
+            print("\(song.albumTitle!) : \(song.title!)")
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -47,8 +71,9 @@ class MusicTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
+    // TODO change to collectionSections
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        let sectionIndexTitles = qryAlbums.itemSections!.map { (x) -> String in
+        let sectionIndexTitles = qryAlbums.collectionSections!.map { (x) -> String in
             x.title
         }
         return sectionIndexTitles
@@ -58,12 +83,14 @@ class MusicTableViewController: UITableViewController {
         return index
     }
     
+    // TODO change to collectionSections
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return qryAlbums.itemSections![section].title
+        return qryAlbums.collectionSections![section].title
     }
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
+        print("\(qryAlbums.collectionSections!.count)")
         return qryAlbums.collectionSections!.count
     }
 
@@ -76,14 +103,14 @@ class MusicTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mediacell", for: indexPath)
-        let currLoc = qryAlbums.collectionSections![indexPath.section].range.location
-        //print(currLoc)
-        let rowItem = qryAlbums.collections![indexPath.row + currLoc]
-        //Main text is Album name
-        cell.textLabel?.text = rowItem.items[0].albumTitle
+        // TODO increase the height of the cell to display artist name
+        let offset = qryAlbums.collectionSections![indexPath.section].range.location
+        let album = qryAlbums.collections![offset + indexPath.row]
+        //Main text is Album name - is album always non-empty?
+        cell.textLabel?.text = album.items[0].albumTitle ?? "EMPTY ALBUM"
+        //print("\(cell.textLabel?.text)")
         // Detail text is Album artist
-        cell.detailTextLabel?.text = rowItem.items[0].albumArtist!
-        // Configure the cell...
+        cell.detailTextLabel?.text = album.items[0].albumArtist ?? "NO ARTIST NAME"
 
         return cell
     }
